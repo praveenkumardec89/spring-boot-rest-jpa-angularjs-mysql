@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.blue-pink.min.css"/>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/init.js"></script>
+    
+    <script  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"></script>
+</head>
+
+<body  id="test" ng-app="testApp"   ng-controller="testController">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div  class="mdl-layout__header-row" >
+            <span class="mdl-layout-title" >REST APIs!</span>
+            
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        
+
+    </header>
+<script type="text/javascript">
+
+var testApp = angular.module('testApp', []);
+
+testApp.controller('testController' , function ($scope, $http) {
+    $scope.apikey = "todo";
+ 
+    $scope.getRequest = function getRequest() {
+        $http.get("http://localhost:8080/api/user/getKey")
+            .then(function successCallback(response){
+                $scope.response = response;
+            //    alert(response.data.api_key);
+                $scope.apikey = $scope.response.data.api_key;
+             
+            }, function errorCallback(response){
+                console.log("Unable to perform get request");
+            });
+        
+    
+    };
+		
+});
+
+</script>
+    
+    <main class="mdl-layout__content">
+ 
+        <div class="page-content" align="center" >
+            <div class="mdl-layout__content"  > 
+            <h3>Lets Test APIs</h3>
+             
+            <!-- Display Wins and draws in line -->
+            <div id="inline" >
+              		<p ng-cloak ng-if="response.data.currentGameStatus== 3">
+            			<h5>
+            				<b>API-KEY:{{apikey}}</b>
+            			</h5>
+            		</p> 
+            		         		
+            </div> 
+            <div>
+                <button   ng-click="getRequest()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >Get-API-Key</button>          
+			</div>
+            </div>
+            
+        </div>
+
+    </main>
+</div>
+
+
+
+</body>
+</html>

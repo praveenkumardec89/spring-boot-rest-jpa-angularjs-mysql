@@ -1,0 +1,42 @@
+input:not([type="text"]) {
+    position:absolute;
+    clip: rect(0,0,0,0);
+}
+
+label {
+    background:white;
+    display:block;
+    float:left;
+    font-size:100px;
+    height:100px;
+    line-height:1;
+    outline:1px solid #ccc;
+    overflow:hidden;
+    padding:10px 20px;
+    width:80px;
+}
+
+label:nth-of-type(3n + 1) {
+    clear:left
+}
+
+input:not([type="text"]):checked + label:before {
+    color: #F38630;
+    content: "X";
+}
+
+input:not([type="text"]):not(:checked) + label:before {
+    color: #69D2E7;
+    content: "O";
+}
+
+input:not([type="text"]):indeterminate + label:before {
+    content: " ";
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+#inline {display:inline-block;margin-right:10px;} 
+#inline2 {display:inline-block;margin-right:10px;} 
